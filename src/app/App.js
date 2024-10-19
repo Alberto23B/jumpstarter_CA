@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="">
       <Header />
-      <main>
-        <div className="flex">
+      <main className="h-screen py-5">
+        <div className="flex justify-around py-5 m-2 bg-opacity-70 bg-slate-950">
           <WeatherContainer />
           <Quote />
         </div>
