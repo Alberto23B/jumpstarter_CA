@@ -3,11 +3,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchQuote = createAsyncThunk(
   "quote/fetchQuote",
   async (arg, thunkAPI) => {
-    const response = await fetch("https://api.api-ninjas.com/v1/quotes", {
-      headers: {
-        "X-Api-Key": "0GdB7XyxNr4k0W1SI1gAUA==PRX5Pfeh59RD4qwc",
-      },
-    });
+    const response = await fetch(
+      "https://api.api-ninjas.com/v1/quotes?category=inspirational",
+      {
+        headers: {
+          "X-Api-Key": "0GdB7XyxNr4k0W1SI1gAUA==PRX5Pfeh59RD4qwc",
+        },
+      }
+    );
     const data = await response.json();
     return data[0].quote;
   }
