@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
 import Header from "../container/Header";
-import InputTask from "../features/task/InputTask";
 import WeatherContainer from "../container/WeatherContainer";
+import Quote from "../features/quote/Quote";
+import TaskContainer from "../container/TaskContainer";
 
 function App() {
   return (
@@ -11,14 +12,9 @@ function App() {
       <main>
         <div className="flex">
           <WeatherContainer />
-          {/* quote component  */}
-          <div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            </p>
-          </div>
+          <Quote />
         </div>
-        <InputTask />
+        <TaskContainer />
       </main>
     </div>
   );
