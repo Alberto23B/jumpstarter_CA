@@ -1,19 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import Task from "./Task";
 
 export default function TaskList() {
-  const tasks = ["task 1", "task 2", "task 3", "task 4"];
+  const tasks = useSelector((state) => state.tasks);
 
   return (
     <div className="mx-2">
       <ul>
-        {tasks.map((el, i) => (
-          <li key={i} className="flex justify-between py-5 my-2 bg-slate-950">
-            <p>{el}</p>
-            <div>
-              <button>V</button>
-              <button>X</button>
-            </div>
-          </li>
+        {tasks.map((task, i) => (
+          <Task key={i} task={task} i={i}></Task>
         ))}
       </ul>
     </div>
