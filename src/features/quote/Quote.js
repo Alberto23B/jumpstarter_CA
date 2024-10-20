@@ -9,11 +9,11 @@ export default function Quote() {
   const isLoaded = useSelector((state) => state.quote.isLoaded);
   const isLoading = useSelector((state) => state.quote.isLoading);
 
-  useEffect(() => {
-    if (isLoaded === false) {
-      dispatch(fetchQuote());
-    }
-  }, [dispatch, isLoaded]);
+  // useEffect(() => {
+  //   if (isLoaded === false) {
+  //     dispatch(fetchQuote());
+  //   }
+  // }, [dispatch, isLoaded]);
 
   return <div className="w-3/5 ">{isLoading ? "Loading" : quote}</div>;
 }
