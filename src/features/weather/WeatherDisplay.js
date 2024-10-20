@@ -1,10 +1,34 @@
 import React from "react";
-import sun from "../../assets/sun_mockup.webp";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWeather } from "./weatherSlice";
+import { weatherImg } from "./weatherImg";
+import { setImage } from "./weatherSlice";
+import location from "../../assets/location.svg";
+
 export default function WeatherDisplay() {
+  const dispatch = useDispatch();
+  const weatherData = useSelector((state) => state.weather);
+  const img = weatherImg.filter(
+    (el) => el.main === weatherData.main.toLowerCase()
+  );
+  const isFulfilled = useSelector((state) => state.weather.isFulfilled);
+
+  useEffect(() => {
+    dispatch(fetchWeather());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isFulfilled) {
+      dispatch(setImage({ img: img[0]?.url ? img[0].url : location }));
+    }
+  }, [isFulfilled]);
+
   return (
     <div>
-      <img src={sun} className="w-10"></img>
-      <p>32 C°</p>
+      <img src={weatherData.img} className="w-10"></img>
+      <p>{weatherData.temp} °C</p>
+      <p>{weatherData.name}</p>
     </div>
   );
 }
