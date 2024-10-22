@@ -9,4 +9,8 @@
     background-repeat: no-repeat;
     background-position: center;
   }
+  .weather {
+    -webkit-filter: invert(0.75);
+    filter: invert(0.75);
+  }
 }

@@ -26,7 +26,11 @@ export default function WeatherDisplay() {
 
   return (
     <div>
-      <img src={weatherData.img} className="w-10" alt="weather logo"></img>
+      <img
+        src={weatherData.img}
+        className="w-10 weather"
+        alt="weather logo"
+      ></img>
       <p>{weatherData.temp} °C</p>
       <p>{weatherData.name}</p>
     </div>
