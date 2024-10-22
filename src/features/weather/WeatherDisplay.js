@@ -12,21 +12,21 @@ export default function WeatherDisplay() {
   const img = weatherImg.filter(
     (el) => el.main === weatherData.main.toLowerCase()
   );
-  const isFulfilled = useSelector((state) => state.weather.isFulfilled);
+  const isLoaded = useSelector((state) => state.weather.isLoaded);
 
   useEffect(() => {
     dispatch(fetchWeather());
   }, [dispatch]);
 
   useEffect(() => {
-    if (isFulfilled) {
+    if (isLoaded) {
       dispatch(setImage({ img: img[0]?.url ? img[0].url : location }));
     }
-  }, [isFulfilled]);
+  }, [isLoaded]);
 
   return (
     <div>
-      <img src={weatherData.img} className="w-10"></img>
+      <img src={weatherData.img} className="w-10" alt="weather logo"></img>
       <p>{weatherData.temp} °C</p>
       <p>{weatherData.name}</p>
     </div>

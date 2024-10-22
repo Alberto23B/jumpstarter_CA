@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, isFulfilled } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import location from "../../assets/location.svg";
 import no_location from "../../assets/no_location.svg";
 
@@ -6,7 +6,7 @@ export const fetchWeather = createAsyncThunk(
   "weather/fetchWeather",
   async (arg, thunkAPI) => {
     const response = await fetch(
-      "https://api.openweathermap.org/data/2.5/weather?lat=45.4641943&lon=9.1896346&appid=e4aebde6bb5813252a8e82301fc7a1e4"
+      "https://api.openweathermap.org/data/2.5/weather?lat=45.4641943&lon=9.1896346&units=metric&appid=e4aebde6bb5813252a8e82301fc7a1e4"
     );
     const data = await response.json();
     return data;
@@ -22,12 +22,10 @@ const weatherSlice = createSlice({
     img: location,
     isLoading: false,
     isFailedLoading: false,
-    isFulfilled: false,
+    isLoaded: false,
   },
   reducers: {
     setImage: (state, action) => {
-      console.log(action);
-
       state.img = action.payload.img;
     },
   },
@@ -43,15 +41,14 @@ const weatherSlice = createSlice({
         state.isFailedLoading = true;
       })
       .addCase(fetchWeather.fulfilled, (state, action) => {
-        console.log(action);
         const { main } = action.payload.weather[0];
         const { name } = action.payload;
         const { temp } = action.payload.main;
         state.isLoading = false;
         state.isFailedLoading = false;
-        state.isFulfilled = true;
+        state.isLoaded = true;
         state.main = main;
-        state.temp = temp;
+        state.temp = temp.toFixed(1);
         state.name = name;
       });
   },
