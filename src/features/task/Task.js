@@ -10,12 +10,14 @@ export default function Task({ task }) {
   };
 
   return (
-    <li key={task.id} className="flex justify-between py-5 my-2 bg-slate-950">
-      <p>{task.task}</p>
-      <div>
+    <li key={task.id} className="flex py-5 my-2 bg-black">
+      <p className="box-content w-4/5">{task.task}</p>
+      <div className="m-auto">
         {/* future feature: list of done task and deleted task */}
         {/* <button>✔</button> */}
-        <button onClick={handleDelete}>X</button>
+        <button onClick={handleDelete} className="font-bold">
+          &#10005;
+        </button>
       </div>
     </li>
   );

@@ -8,9 +8,12 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    height: 100%;
   }
   .weather {
     -webkit-filter: invert(0.75);
     filter: invert(0.75);
   }
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Prosto+One&display=swap");

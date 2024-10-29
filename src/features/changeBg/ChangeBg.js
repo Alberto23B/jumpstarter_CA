@@ -26,12 +26,11 @@ export default function ChangeBg() {
   };
 
   return (
-    <button onClick={handleClick}>
-      <img
-        src={eye}
-        className="w-10 bg-white"
-        alt="toggle background button"
-      ></img>
-    </button>
+    <div className="flex items-center justify-end w-1/2 my-5 bg-black opacity-70">
+      <p className="inline-block mx-5 ">Get inspired </p>
+      <button onClick={handleClick}>
+        <img src={eye} className="w-10" alt="toggle background button"></img>
+      </button>
+    </div>
   );
 }

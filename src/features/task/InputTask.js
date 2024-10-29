@@ -37,7 +37,7 @@ export default function InputTask() {
         value={inputTask}
         onChange={(e) => setInputTask(e.target.value)}
       ></input>
-      <button className="m-auto">✔</button>
+      <button className="m-auto text-2xl font-bold">&#xFF0B;</button>
     </form>
   );
 }
