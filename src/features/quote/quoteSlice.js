@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { quoteKey } from "../../keys";
 
 export const fetchQuote = createAsyncThunk(
   "quote/fetchQuote",
@@ -7,7 +8,7 @@ export const fetchQuote = createAsyncThunk(
       "https://api.api-ninjas.com/v1/quotes?category=inspirational",
       {
         headers: {
-          "X-Api-Key": "0GdB7XyxNr4k0W1SI1gAUA==PRX5Pfeh59RD4qwc",
+          "X-Api-Key": quoteKey,
         },
       }
     );

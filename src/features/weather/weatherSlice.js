@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import location from "../../assets/location.svg";
 import no_location from "../../assets/no_location.svg";
+import { weatherKey } from "../../keys";
 
 export const fetchWeather = createAsyncThunk(
   "weather/fetchWeather",
   async (arg, thunkAPI) => {
     const response = await fetch(
-      "https://api.openweathermap.org/data/2.5/weather?lat=45.4641943&lon=9.1896346&units=metric&appid=e4aebde6bb5813252a8e82301fc7a1e4"
+      `https://api.openweathermap.org/data/2.5/weather?lat=45.4641943&lon=9.1896346&units=metric&appid=${weatherKey}`
     );
     const data = await response.json();
     return data;
