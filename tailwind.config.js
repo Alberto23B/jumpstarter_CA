@@ -10,7 +10,7 @@ module.exports = {
         "infinite-scroll": "infinite-scroll 90s linear infinite",
         "infinite-scroll2": "infinite-scroll 120s linear infinite",
         "v-scroll": "vertical-scroll 90s linear infinite alternate",
-        "v-scroll2": "vertical-scroll 120s linear infinite alternate-reverse",
+        "v-scroll2": "vertical-scroll 95s linear infinite alternate-reverse",
       },
       keyframes: {
         "infinite-scroll": {
