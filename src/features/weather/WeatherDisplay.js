@@ -25,10 +25,10 @@ export default function WeatherDisplay() {
   }, [isLoaded]);
 
   return (
-    <div>
+    <div className="text-center">
       <img
         src={weatherData.img}
-        className="w-10 weather"
+        className="w-10 m-auto weather"
         alt="weather logo"
       ></img>
       <p>{weatherData.temp} °C</p>

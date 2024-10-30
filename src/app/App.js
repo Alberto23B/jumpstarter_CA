@@ -8,16 +8,28 @@ import TaskContainer from "../container/TaskContainer";
 
 function App() {
   return (
-    <div className="">
+    <div>
       <Header />
-      <main className="h-screen py-5">
-        <div className="relative z-10 flex justify-around py-5 m-2 bg-black bg-opacity-70">
-          <WeatherContainer />
-          <Quote />
+      <div className="h-screen switch none md:flex">
+        <div className="hidden md:flex w-1/6 overflow-hidden leading-[10rem] break-all">
+          <span className="lateral-banner text-pretty">
+            JUMPSTARTERJUMPSTARTERJUMPSTARTER
+          </span>
         </div>
-        <ChangeBg />
-        <TaskContainer />
-      </main>
+        <main className="h-screen py-5 md:w-3/4 md:m-auto">
+          <div className="relative z-10 flex justify-around py-5 m-2 bg-black md:m-auto bg-opacity-70 md:bg-opacity-100 md:w-2/3">
+            <WeatherContainer />
+            <Quote />
+          </div>
+          <ChangeBg />
+          <TaskContainer />
+        </main>
+        <div className="hidden md:flex w-1/6 overflow-hidden leading-[8rem] break-all">
+          <span className="lateral-banner text-pretty">
+            JUMPSTARTERJUMPSTARTERJUMPSTARTER
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

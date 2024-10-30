@@ -11,7 +11,7 @@ export default function Task({ task }) {
 
   return (
     <li key={task.id} className="flex py-5 my-2 bg-black">
-      <p className="box-content w-4/5">{task.task}</p>
+      <p className="box-content w-4/5 ml-7">{task.task}</p>
       <div className="m-auto">
         {/* future feature: list of done task and deleted task */}
         {/* <button>✔</button> */}

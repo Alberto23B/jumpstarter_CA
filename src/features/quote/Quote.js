@@ -15,5 +15,5 @@ export default function Quote() {
     }
   }, [dispatch, isLoaded]);
 
-  return <div className="w-3/5 ">{isLoading ? "Loading" : quote}</div>;
+  return <div className="w-3/5 mx-5">{isLoading ? "Loading" : quote}</div>;
 }

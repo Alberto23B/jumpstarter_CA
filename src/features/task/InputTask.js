@@ -31,7 +31,7 @@ export default function InputTask() {
   return (
     <form className="flex my-5 ml-2" onSubmit={handleSubmit}>
       <input
-        className="w-4/5 text-black border-2 border-black"
+        className="w-4/5 ml-4 text-black border-2 border-black"
         type="text"
         placeholder="Add task"
         value={inputTask}
