@@ -11,8 +11,8 @@ function App() {
     <div>
       <Header />
       <div className="h-screen switch none md:flex">
-        <div className="hidden md:flex w-1/6 overflow-hidden leading-[10rem] break-all">
-          <span className="lateral-banner text-pretty">
+        <div className="hidden md:flex w-1/6 overflow-hidden leading-[10rem] break-all bg-black">
+          <span className="lateral-banner text-pretty animate-v-scroll">
             JUMPSTARTERJUMPSTARTERJUMPSTARTER
           </span>
         </div>
@@ -24,8 +24,8 @@ function App() {
           <ChangeBg />
           <TaskContainer />
         </main>
-        <div className="hidden md:flex w-1/6 overflow-hidden leading-[8rem] break-all">
-          <span className="lateral-banner text-pretty">
+        <div className="hidden md:flex w-1/6 overflow-hidden leading-[8rem] break-all bg-black">
+          <span className="lateral-banner text-pretty animate-v-scroll2">
             JUMPSTARTERJUMPSTARTERJUMPSTARTER
           </span>
         </div>
