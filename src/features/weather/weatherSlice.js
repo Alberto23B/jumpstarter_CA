@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import location from "../../assets/location.svg";
 import no_location from "../../assets/no_location.svg";
-import { weatherKey } from "../../keys";
+// import { weatherKey } from "../../keys";
 
+const weatherKey = process.env.REACT_APP_WEATHER_KEY;
 export const fetchWeather = createAsyncThunk(
   "weather/fetchWeather",
   async (arg, thunkAPI) => {

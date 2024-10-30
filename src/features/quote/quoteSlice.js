@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { quoteKey } from "../../keys";
+// import { quoteKey } from "../../keys";
 
+const quoteKey = process.env.REACT_APP_QUOTE_KEY;
 export const fetchQuote = createAsyncThunk(
   "quote/fetchQuote",
   async (arg, thunkAPI) => {
