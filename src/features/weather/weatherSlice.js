@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import locationImg from "../../assets/location.svg";
 import no_locationImg from "../../assets/no_location.svg";
-import useGeolocation from "../../utils/useGeolocation";
 
 const weatherKey = process.env.REACT_APP_WEATHER_KEY;
 export const fetchWeather = createAsyncThunk(

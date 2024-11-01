@@ -1,5 +1,5 @@
 import React from "react";
-import eye from "../../assets/change_bg.png";
+import eye from "../../assets/change_bg.webp";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBg } from "./changeBgSlice";
