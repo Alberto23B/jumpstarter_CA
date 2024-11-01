@@ -26,7 +26,7 @@ export default function ChangeBg() {
   };
 
   return (
-    <div className="flex items-center justify-end w-1/2 my-5 bg-black bg-opacity-70 md:bg-opacity-100 md:mx-auto">
+    <div className="flex items-center justify-end w-1/2 my-5 bg-black md:mx-auto">
       <p className="inline-block mx-5 ">Get inspired </p>
       <button onClick={handleClick}>
         <img

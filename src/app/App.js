@@ -17,7 +17,7 @@ function App() {
           </span>
         </div>
         <main className="h-screen py-5 md:w-3/4 md:m-auto">
-          <div className="relative z-10 flex justify-around py-5 m-2 bg-black md:m-auto bg-opacity-70 md:bg-opacity-100 md:w-2/3">
+          <div className="relative z-10 flex justify-around py-5 m-2 bg-black md:m-auto md:w-2/3">
             <WeatherContainer />
             <Quote />
           </div>
