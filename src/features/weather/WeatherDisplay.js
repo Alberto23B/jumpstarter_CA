@@ -3,11 +3,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWeather } from "./weatherSlice";
 import { weatherImg } from "./weatherImg";
-import { setImage } from "./weatherSlice";
-import location from "../../assets/location.svg";
+import useGeolocation from "../../utils/useGeolocation";
+import { setImage, getLocation } from "./weatherSlice";
+import locationImg from "../../assets/location.svg";
 
 export default function WeatherDisplay() {
   const dispatch = useDispatch();
+  const location = useGeolocation();
+  const isLocationLoaded = location.loaded;
   const weatherData = useSelector((state) => state.weather);
   const img = weatherImg.filter(
     (el) => el.main === weatherData.main.toLowerCase()
@@ -15,12 +18,15 @@ export default function WeatherDisplay() {
   const isLoaded = useSelector((state) => state.weather.isLoaded);
 
   useEffect(() => {
-    dispatch(fetchWeather());
-  }, [dispatch]);
+    if (isLocationLoaded) {
+      dispatch(getLocation(location));
+      dispatch(fetchWeather(location));
+    }
+  }, [isLocationLoaded]);
 
   useEffect(() => {
     if (isLoaded) {
-      dispatch(setImage({ img: img[0]?.url ? img[0].url : location }));
+      dispatch(setImage({ img: img[0]?.url ? img[0].url : locationImg }));
     }
   }, [isLoaded]);
 
@@ -32,7 +38,7 @@ export default function WeatherDisplay() {
         alt="weather logo"
       ></img>
       <p>{weatherData.temp} °C</p>
-      <p>{weatherData.name}</p>
+      <p>{location.loaded ? weatherData.name : "Allow for Location"}</p>
     </div>
   );
 }

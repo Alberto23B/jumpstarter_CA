@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import location from "../../assets/location.svg";
-import no_location from "../../assets/no_location.svg";
-// import { weatherKey } from "../../keys";
+import locationImg from "../../assets/location.svg";
+import no_locationImg from "../../assets/no_location.svg";
+import useGeolocation from "../../utils/useGeolocation";
 
 const weatherKey = process.env.REACT_APP_WEATHER_KEY;
 export const fetchWeather = createAsyncThunk(
   "weather/fetchWeather",
-  async (arg, thunkAPI) => {
+  async (location, thunkAPI) => {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=45.4641943&lon=9.1896346&units=metric&appid=${weatherKey}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${location.coordinates.lat}&lon=${location.coordinates.lng}&units=metric&appid=${weatherKey}`
     );
     const data = await response.json();
     return data;
@@ -21,7 +21,8 @@ const weatherSlice = createSlice({
     main: "",
     temp: 0,
     name: "",
-    img: location,
+    img: locationImg,
+    location: null,
     isLoading: false,
     isFailedLoading: false,
     isLoaded: false,
@@ -29,6 +30,9 @@ const weatherSlice = createSlice({
   reducers: {
     setImage: (state, action) => {
       state.img = action.payload.img;
+    },
+    getLocation: (state, action) => {
+      state.location = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -38,7 +42,7 @@ const weatherSlice = createSlice({
         state.isFailedLoading = false;
       })
       .addCase(fetchWeather.rejected, (state) => {
-        state.img = no_location;
+        state.img = no_locationImg;
         state.isLoading = false;
         state.isFailedLoading = true;
       })
@@ -57,4 +61,4 @@ const weatherSlice = createSlice({
 });
 
 export default weatherSlice.reducer;
-export const { setImage } = weatherSlice.actions;
+export const { setImage, getLocation } = weatherSlice.actions;
