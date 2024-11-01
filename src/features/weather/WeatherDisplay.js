@@ -22,7 +22,7 @@ export default function WeatherDisplay() {
       dispatch(getLocation(location));
       dispatch(fetchWeather(location));
     }
-  }, [isLocationLoaded]);
+  }, [isLocationLoaded, location]);
 
   useEffect(() => {
     if (isLoaded) {
