@@ -21,13 +21,13 @@ export default function StartButtons() {
         </button>
       </div>
       <div className="w-full text-center">
-        <button className="px-2 mx-1 text-sm border-2 border-white rounded-lg w-fit">
+        <button className="px-2 mx-1 text-sm border-2 border-white rounded-lg w-fit xl:w-1/4">
           Chill 🟢
         </button>
-        <button className="px-1 mx-1 text-sm border-2 border-white rounded-lg w-fit">
+        <button className="px-1 mx-1 text-sm border-2 border-white rounded-lg w-fit xl:w-1/4">
           Motivated 🟡
         </button>
-        <button className="px-2 mx-1 text-sm border-2 border-white rounded-lg w-fit">
+        <button className="px-2 mx-1 text-sm border-2 border-white rounded-lg w-fit xl:w-1/4">
           Guru 🔴
         </button>
       </div>
