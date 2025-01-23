@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-family: monospace;
+}
+
 @layer base {
   main {
     color: white;

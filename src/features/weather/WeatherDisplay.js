@@ -34,11 +34,13 @@ export default function WeatherDisplay() {
     <div className="text-center">
       <img
         src={weatherData.img}
-        className="w-10 m-auto weather"
+        className="w-6 m-auto weather"
         alt="weather logo"
       ></img>
-      <p>{weatherData.temp} °C</p>
-      <p>{location.loaded ? weatherData.name : "Allow for Location"}</p>
+      <p className="text-sm">{weatherData.temp} °C</p>
+      <p className="text-sm">
+        {location.loaded ? weatherData.name : "Allow for Location"}
+      </p>
     </div>
   );
 }
