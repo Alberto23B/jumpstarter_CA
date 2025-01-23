@@ -26,7 +26,7 @@
 
 ## Features
 
-- Display current weather (currently only for Milan (IT)) and a motivational quote from API Ninjas
+- Display current weather and a motivational quote from API Ninjas
 - Background is fetched from LoremPicsum API and can be changed by the user
 - Task Manager
 
@@ -41,11 +41,6 @@ Include areas you believe need improvement / could be improved. Also add TODOs f
 Room for improvement:
 
 - Improve change background feature's speed
-
-To do:
-
-- Use Local Storage
-- Add geolocalization
 
 ## Acknowledgements
 
