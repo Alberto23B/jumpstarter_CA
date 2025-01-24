@@ -60,7 +60,7 @@ export default function InputTask() {
         </div>
         <div className="pt-2 mx-auto text-center w-fit">
           {timeSVG}
-          <p className="hidden md:inline">Estimated:</p>
+          <p className="hidden mx-2 md:inline">Estimated:</p>
           <label htmlFor="set-hours">h:</label>
           <select
             id="set-hours"
@@ -79,10 +79,12 @@ export default function InputTask() {
             <option value={9}>9</option>
             <option value={10}>10</option>
           </select>
-          <label htmlFor="set-minutes">m:</label>
+          <label htmlFor="set-minutes" className="ml-2">
+            m:
+          </label>
           <select
             id="set-minutes"
-            className="text-black"
+            className="mr-10 text-black"
             onChange={(e) => setEstimatedMinutes(e.target.value)}
           >
             <option value={0}>0</option>
@@ -100,7 +102,7 @@ export default function InputTask() {
             <option value={60}>60</option>
           </select>
           {rewardSVG}
-          <p className="hidden md:inline">Reward:</p>
+          <p className="hidden mx-2 md:inline">Reward:</p>
           <select
             name="set-reward"
             id="set-reward"
