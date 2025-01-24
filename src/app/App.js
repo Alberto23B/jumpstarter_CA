@@ -4,7 +4,6 @@ import Header from "../container/Header";
 import WeatherContainer from "../container/WeatherContainer";
 import TaskContainer from "../container/TaskContainer";
 import MiddleContainer from "../container/MiddleContainer";
-import Infos from "../container/Infos";
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
           </div>
           <MiddleContainer />
           <TaskContainer />
-          <Infos></Infos>
         </main>
         <div className="hidden md:flex w-1/6 overflow-hidden leading-[8rem] break-all bg-black">
           <span className="lateral-banner text-pretty animate-v-scroll2">
