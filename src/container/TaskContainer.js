@@ -1,5 +1,5 @@
 import React from "react";
-import TaskList from "../features/task/TaskList";
+import TaskList from "./TaskList";
 import InputTask from "../features/task/InputTask";
 import TaskStorageHandler from "../features/task/TaskStorageHandler";
 
