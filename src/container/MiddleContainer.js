@@ -1,6 +1,6 @@
 import React from "react";
 import ChangeBg from "../features/changeBg/ChangeBg";
-import OpenSettings from "../features/settings/OpenSettings";
+import OpenSettings from "../features/settings/ShowSettings";
 
 export default function MiddleContainer() {
   return (
