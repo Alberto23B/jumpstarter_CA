@@ -1,11 +1,10 @@
 import React from "react";
 import "./App.css";
 import Header from "../container/Header";
-import ChangeBg from "../features/changeBg/ChangeBg";
 import WeatherContainer from "../container/WeatherContainer";
 import TaskContainer from "../container/TaskContainer";
 import MiddleContainer from "../container/MiddleContainer";
-import Overlay from "../container/Overlay";
+import Infos from "../container/Infos";
 
 function App() {
   return (
@@ -23,7 +22,7 @@ function App() {
           </div>
           <MiddleContainer />
           <TaskContainer />
-          <Overlay></Overlay>
+          <Infos></Infos>
         </main>
         <div className="hidden md:flex w-1/6 overflow-hidden leading-[8rem] break-all bg-black">
           <span className="lateral-banner text-pretty animate-v-scroll2">
