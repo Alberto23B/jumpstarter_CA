@@ -3,9 +3,13 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "./tasksSlice";
+import validateTime from "../../utils/validateTime";
 
 export default function InputTask() {
   const [inputTask, setInputTask] = useState("");
+  const [estimatedHours, setEstimatedHours] = useState(0);
+  const [estimatedMinutes, setEstimatedMinutes] = useState(0);
+  const [reward, setReward] = useState(1);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -13,9 +17,16 @@ export default function InputTask() {
     const id = uuidv4();
     const regex = /^\s+$/;
 
+    const totalTime = validateTime(estimatedHours, estimatedMinutes);
+
     if (!inputTask || inputTask.match(regex)) {
       alert("Please write something");
       setInputTask("");
+      return;
+    }
+
+    if (!totalTime) {
+      alert("A 0 estimated time is not valid");
       return;
     }
 
@@ -23,6 +34,8 @@ export default function InputTask() {
       addTask({
         id: id,
         task: inputTask,
+        estimatedTime: totalTime,
+        reward: reward,
       })
     );
     setInputTask("");
@@ -60,7 +73,44 @@ export default function InputTask() {
             />
           </svg>
           <p className="hidden md:inline">Estimated:</p>
-          <input className="w-1/6 mr-4 text-black border-2 border-black" />
+          <label htmlFor="set-hours">h:</label>
+          <select
+            id="set-hours"
+            className="text-black"
+            onChange={(e) => setEstimatedHours(e.target.value)}
+          >
+            <option value={0}>0</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+            <option value={8}>8</option>
+            <option value={9}>9</option>
+            <option value={10}>10</option>
+          </select>
+          <label htmlFor="set-minutes">m:</label>
+          <select
+            id="set-minutes"
+            className="text-black"
+            onChange={(e) => setEstimatedMinutes(e.target.value)}
+          >
+            <option value={0}>0</option>
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={15}>15</option>
+            <option value={20}>20</option>
+            <option value={25}>25</option>
+            <option value={30}>30</option>
+            <option value={35}>35</option>
+            <option value={40}>40</option>
+            <option value={45}>45</option>
+            <option value={50}>50</option>
+            <option value={55}>55</option>
+            <option value={60}>60</option>
+          </select>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -80,6 +130,8 @@ export default function InputTask() {
             name="set-reward"
             id="set-reward"
             className="text-black border-black"
+            value={reward}
+            onChange={(e) => setReward(Number(e.target.value))}
           >
             <option value={1}>&#x2605;</option>
             <option value={2}>&#x2605;&#x2605;</option>
