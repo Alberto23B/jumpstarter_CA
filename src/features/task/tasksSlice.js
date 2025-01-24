@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const tasksSlice = createSlice({
   name: "tasks",
-  initialState: [],
+  initialState: JSON.parse(localStorage.getItem("jumpstarter_tasks") || "[]"),
   reducers: {
     addTask: (state, action) => {
       state.push(action.payload);

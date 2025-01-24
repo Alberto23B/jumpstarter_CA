@@ -7,10 +7,9 @@ export default function WeatherContainer() {
   return (
     <div className="z-10 flex w-4/5 m-auto">
       <WeatherDisplay />
-      {
-        // <StartButtons />
-      }
-      <StartedGame />
+      <StartButtons />
+
+      {/* <StartedGame /> */}
     </div>
   );
 }
