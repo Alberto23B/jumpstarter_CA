@@ -7,21 +7,29 @@ export default function TaskList() {
     (state) => state.game.isDifficultySelected
   );
 
+  const isDescending = useSelector((state) => state.settings.descending);
+
   const taskOrder = useSelector((state) => state.settings.order);
 
   const userTasks = useSelector((state) => state.tasks);
-  // const gameTasks = useSelector((state) => state.game.tasks);
 
   let sortedTasksRef = useRef(userTasks);
 
   useEffect(() => {
     let sorted = [...userTasks];
+    const sortByEstimated = isDescending
+      ? (a, b) => b.estimatedTime - a.estimatedTime
+      : (a, b) => a.estimatedTime - b.estimatedTime;
+    const sortByReward = isDescending
+      ? (a, b) => b.reward - a.reward
+      : (a, b) => a.reward - b.reward;
+
     switch (taskOrder) {
       case "estimated":
-        sorted.sort((a, b) => a.estimatedTime - b.estimatedTime);
+        sorted.sort(sortByEstimated);
         break;
       case "reward":
-        sorted.sort((a, b) => a.reward - b.reward);
+        sorted.sort(sortByReward);
         break;
       default:
         sorted = userTasks;
@@ -29,7 +37,7 @@ export default function TaskList() {
     }
 
     sortedTasksRef.current = sorted;
-  }, [taskOrder, userTasks]);
+  }, [taskOrder, userTasks, isDescending]);
 
   const tasks = isDifficultySelected ? sortedTasksRef.current || [] : userTasks;
 

@@ -4,6 +4,7 @@ const settingsSlice = createSlice({
   name: "settings",
   initialState: {
     order: "input",
+    descending: false,
     break: false,
     breakTime: 0,
   },
@@ -12,6 +13,12 @@ const settingsSlice = createSlice({
       return {
         ...state,
         order: action.payload.order,
+      };
+    },
+    setDescending: (state, action) => {
+      return {
+        ...state,
+        descending: action.payload.descending,
       };
     },
     setBreak: (state, action) => {
@@ -30,4 +37,5 @@ const settingsSlice = createSlice({
 });
 
 export default settingsSlice.reducer;
-export const { setOrder, setBreak, setBreakTime } = settingsSlice.actions;
+export const { setOrder, setDescending, setBreak, setBreakTime } =
+  settingsSlice.actions;

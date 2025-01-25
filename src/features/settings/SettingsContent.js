@@ -1,12 +1,18 @@
 import { clearSVG } from "../../utils/svgCollection";
 import toggleSetting from "../../utils/toggleModal";
 import { useDispatch, useSelector } from "react-redux";
-import { setBreak, setBreakTime, setOrder } from "./settingsSlice";
+import {
+  setBreak,
+  setBreakTime,
+  setDescending,
+  setOrder,
+} from "./settingsSlice";
 
 export default function SettingsContent({ reference }) {
   const dispatch = useDispatch();
   const isBreakActive = useSelector((state) => state.settings.break);
   const orderSelected = useSelector((state) => state.settings.order);
+  const isDescending = useSelector((state) => state.settings.descending);
 
   const handleSelect = (target, value) => {
     switch (target) {
@@ -16,7 +22,13 @@ export default function SettingsContent({ reference }) {
             order: value,
           })
         );
-
+        break;
+      case "descending":
+        dispatch(
+          setDescending({
+            descending: value,
+          })
+        );
         break;
       case "break":
         dispatch(
@@ -74,6 +86,15 @@ export default function SettingsContent({ reference }) {
             onChange={(e) => handleSelect(e.target.name, "reward")}
           ></input>
           <label htmlFor="reward">reward </label>
+        </div>
+        <div>
+          <p>descending order:</p>
+          <input
+            type="checkbox"
+            id="descending"
+            name="descending"
+            onChange={(e) => handleSelect(e.target.name, !isDescending)}
+          />
         </div>
         <div className="py-5 mx-2">
           <p>pause between tasks:</p>
