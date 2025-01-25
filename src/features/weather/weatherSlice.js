@@ -28,33 +28,43 @@ const weatherSlice = createSlice({
   },
   reducers: {
     setImage: (state, action) => {
-      state.img = action.payload.img;
+      return { ...state, img: action.payload.img };
     },
     getLocation: (state, action) => {
-      state.location = action.payload;
+      return { ...state, location: action.payload };
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchWeather.pending, (state) => {
-        state.isLoading = true;
-        state.isFailedLoading = false;
+        return {
+          ...state,
+          isLoading: true,
+          isFailedLoading: false,
+        };
       })
       .addCase(fetchWeather.rejected, (state) => {
-        state.img = no_locationImg;
-        state.isLoading = false;
-        state.isFailedLoading = true;
+        return {
+          ...state,
+          img: no_locationImg,
+          isLoading: false,
+          isFailedLoading: true,
+        };
       })
       .addCase(fetchWeather.fulfilled, (state, action) => {
         const { main } = action.payload.weather[0];
         const { name } = action.payload;
         const { temp } = action.payload.main;
-        state.isLoading = false;
-        state.isFailedLoading = false;
-        state.isLoaded = true;
-        state.main = main;
-        state.temp = temp.toFixed(1);
-        state.name = name;
+
+        return {
+          ...state,
+          isLoading: false,
+          isFailedLoading: false,
+          isLoaded: true,
+          main: main,
+          temp: parseFloat(temp.toFixed(1)),
+          name: name,
+        };
       });
   },
 });
