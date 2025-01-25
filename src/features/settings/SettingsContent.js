@@ -1,17 +1,42 @@
 import { clearSVG } from "../../utils/svgCollection";
 import toggleSetting from "../../utils/toggleModal";
-import { useDispatch } from "react-redux";
-import { setOrder } from "./settingsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setBreak, setBreakTime, setOrder } from "./settingsSlice";
 
 export default function SettingsContent({ reference }) {
   const dispatch = useDispatch();
+  const isBreakActive = useSelector((state) => state.settings.break);
+  const orderSelected = useSelector((state) => state.settings.order);
 
-  const handleOrderSelect = (value) => {
-    dispatch(
-      setOrder({
-        order: value,
-      })
-    );
+  const handleSelect = (target, value) => {
+    switch (target) {
+      case "order-task":
+        dispatch(
+          setOrder({
+            order: value,
+          })
+        );
+
+        break;
+      case "break":
+        dispatch(
+          setBreak({
+            break: value,
+          })
+        );
+        break;
+      case "break-time":
+        dispatch(
+          setBreakTime({
+            breakTime: value,
+          })
+        );
+        break;
+      default: {
+        alert("Unknown action");
+        return;
+      }
+    }
   };
 
   return (
@@ -29,35 +54,59 @@ export default function SettingsContent({ reference }) {
             type="radio"
             id="input"
             name="order-task"
-            onChange={(e) => handleOrderSelect("input")}
-            defaultChecked
+            onChange={(e) => handleSelect(e.target.name, "input")}
+            checked={orderSelected === "input"}
           ></input>
           <label htmlFor="input">input </label>
           <input
             type="radio"
             id="estimated"
             name="order-task"
-            onChange={(e) => handleOrderSelect("estimated")}
+            checked={orderSelected === "estimated"}
+            onChange={(e) => handleSelect(e.target.name, "estimated")}
           ></input>
           <label htmlFor="estimated">estimated </label>
           <input
             type="radio"
             id="reward"
             name="order-task"
-            onChange={(e) => handleOrderSelect("reward")}
+            checked={orderSelected === "reward"}
+            onChange={(e) => handleSelect(e.target.name, "reward")}
           ></input>
           <label htmlFor="reward">reward </label>
         </div>
         <div className="py-5 mx-2">
           <p>pause between tasks:</p>
-          <input type="radio" id="yes" name="pause" defaultChecked></input>
-          <label htmlFor="input">yes </label>
-          <input type="radio" id="no" name="pause"></input>
-          <label htmlFor="estimated">no </label>
+          <input
+            type="radio"
+            id="yes"
+            name="break"
+            checked={isBreakActive}
+            onChange={(e) => handleSelect(e.target.name, true)}
+          ></input>
+          <label htmlFor="break">yes </label>
+          <input
+            type="radio"
+            id="no"
+            name="break"
+            checked={!isBreakActive}
+            onChange={(e) => handleSelect(e.target.name, false)}
+          ></input>
+          <label htmlFor="break">no </label>
         </div>
         <div className="py-5 mx-2">
-          <label htmlFor="break-time">break time:</label>
-          <select id="break-time" className="text-black">
+          <label
+            htmlFor="break-time"
+            className={isBreakActive ? "text-white" : "text-slate-600"}
+          >
+            break time:
+          </label>
+          <select
+            id="break-time"
+            className="text-black"
+            onChange={(e) => handleSelect(e.target.id, e.target.value)}
+            disabled={!isBreakActive}
+          >
             <option value={0}>0</option>
             <option value={5}>5</option>
             <option value={10}>10</option>

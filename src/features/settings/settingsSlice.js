@@ -23,7 +23,7 @@ const settingsSlice = createSlice({
     setBreakTime: (state, action) => {
       return {
         ...state,
-        breakTime: action.payload.break,
+        breakTime: Number(action.payload.breakTime),
       };
     },
   },
