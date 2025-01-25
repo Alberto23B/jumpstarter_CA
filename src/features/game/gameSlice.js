@@ -17,8 +17,14 @@ const gameSlice = createSlice({
         isDifficultySelected: action.payload.isDifficultySelected,
       };
     },
+    startGame: (state, action) => {
+      return {
+        ...state,
+        started: action.payload.started,
+      };
+    },
   },
 });
 
 export default gameSlice.reducer;
-export const { setDifficulty } = gameSlice.actions;
+export const { setDifficulty, startGame } = gameSlice.actions;
