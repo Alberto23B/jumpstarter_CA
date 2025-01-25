@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loadGameTasks } from "../../utils/game";
 
 const gameSlice = createSlice({
   name: "game",
   initialState: {
     difficulty: "",
+    isDifficultySelected: false,
     gameTasks: [],
     score: 0,
     started: false,
@@ -14,6 +14,7 @@ const gameSlice = createSlice({
       return {
         ...state,
         difficulty: action.payload.difficulty,
+        isDifficultySelected: action.payload.isDifficultySelected,
       };
     },
   },
