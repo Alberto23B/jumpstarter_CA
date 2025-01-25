@@ -19,20 +19,28 @@ const changeBgSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchBg.pending, (state) => {
-        state.isLoading = true;
-        state.isFailedLoading = false;
-        state.isLoaded = false;
+        return {
+          ...state,
+          isLoading: true,
+          isFailedLoading: false,
+          isLoaded: false,
+        };
       })
       .addCase(fetchBg.rejected, (state) => {
-        state.isLoading = false;
-        state.isFailedLoading = true;
-        state.isLoaded = false;
+        return {
+          ...state,
+          isLoading: false,
+          isFailedLoading: true,
+          isLoaded: false,
+        };
       })
       .addCase(fetchBg.fulfilled, (state, action) => {
-        state.bg = action.payload;
-        state.isLoading = false;
-        state.isFailedLoading = false;
-        state.isLoaded = true;
+        return {
+          isLoading: false,
+          isFailedLoading: false,
+          isLoaded: true,
+          bg: action.payload,
+        };
       });
   },
 });
