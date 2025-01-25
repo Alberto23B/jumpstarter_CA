@@ -6,11 +6,8 @@ export default function TaskList() {
   const isDifficultySelected = useSelector(
     (state) => state.game.isDifficultySelected
   );
-
   const isDescending = useSelector((state) => state.settings.descending);
-
   const taskOrder = useSelector((state) => state.settings.order);
-
   const userTasks = useSelector((state) => state.tasks);
 
   let sortedTasksRef = useRef(userTasks);
