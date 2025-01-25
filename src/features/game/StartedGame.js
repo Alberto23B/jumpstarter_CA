@@ -1,4 +1,5 @@
 import ShowInfo from "../infos/ShowInfo";
+import StopGame from "./StopGame";
 
 export default function StartedGame() {
   return (
@@ -8,11 +9,7 @@ export default function StartedGame() {
           <h2 className="inline ">game started!</h2>
           <ShowInfo />
         </div>
-        <div className="w-full text-center">
-          <button className="px-2 mx-1 text-sm border-2 border-white rounded-lg w-fit">
-            Stop!
-          </button>
-        </div>
+        <StopGame />
       </div>
       <div className="flex">
         <svg
