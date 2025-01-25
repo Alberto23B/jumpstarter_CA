@@ -5,7 +5,8 @@ const tasksSlice = createSlice({
   initialState: JSON.parse(localStorage.getItem("jumpstarter_tasks") || "[]"),
   reducers: {
     addTask: (state, action) => {
-      state.push(action.payload);
+      // state.push(action.payload);
+      return [...state, action.payload];
     },
     deleteTask: (state, action) => {
       return state.filter((el) => el.id !== action.payload.id);
