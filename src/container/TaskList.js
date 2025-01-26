@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Task from "../features/task/Task";
+import { modifyTask } from "../utils/game";
 
 export default function TaskList() {
   const isDifficultySelected = useSelector(
@@ -9,8 +10,9 @@ export default function TaskList() {
   const isDescending = useSelector((state) => state.settings.descending);
   const taskOrder = useSelector((state) => state.settings.order);
   const userTasks = useSelector((state) => state.tasks);
+  const difficulty = useSelector((state) => state.game.difficulty);
 
-  let sortedTasksRef = useRef(userTasks);
+  const [sortedTasks, setSortedTasks] = useState(userTasks);
 
   useEffect(() => {
     let sorted = [...userTasks];
@@ -33,10 +35,12 @@ export default function TaskList() {
         break;
     }
 
-    sortedTasksRef.current = sorted;
-  }, [taskOrder, userTasks, isDescending]);
+    const sortedAndModified = modifyTask(sorted, difficulty);
 
-  const tasks = isDifficultySelected ? sortedTasksRef.current || [] : userTasks;
+    setSortedTasks(sortedAndModified);
+  }, [taskOrder, userTasks, isDescending, difficulty]);
+
+  const tasks = isDifficultySelected ? sortedTasks : userTasks;
 
   return (
     <div className="mx-2">
