@@ -50,7 +50,6 @@ export default function Task({ task, keyNum }) {
         </div>
       </div>
       <div className="m-auto">
-        <button>{playSVG}</button>
         <button onClick={handleDelete} className="font-bold">
           {clearSVG}
         </button>
