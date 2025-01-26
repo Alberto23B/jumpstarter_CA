@@ -1,16 +1,24 @@
 import { playSVGBig } from "../../utils/svgCollection";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { startGame } from "./gameSlice";
 
 export default function PlayGame() {
   const dispatch = useDispatch();
+  const isDifficultySelected = useSelector(
+    (state) => state.game.isDifficultySelected
+  );
 
   const handleClick = () => {
-    dispatch(
-      startGame({
-        started: true,
-      })
-    );
+    if (isDifficultySelected) {
+      dispatch(
+        startGame({
+          started: true,
+        })
+      );
+    } else {
+      alert("Please select a difficulty first");
+      return;
+    }
   };
 
   return <button onClick={handleClick}>{playSVGBig}</button>;

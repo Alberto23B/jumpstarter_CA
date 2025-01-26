@@ -5,7 +5,7 @@ export default function StopGame() {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(stopGame({ started: false }));
+    dispatch(stopGame({ started: false, isDifficultySelected: false }));
   };
 
   return (

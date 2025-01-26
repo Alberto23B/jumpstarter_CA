@@ -5,7 +5,6 @@ const gameSlice = createSlice({
   initialState: {
     difficulty: "",
     isDifficultySelected: false,
-    gameTasks: [],
     score: 0,
     started: false,
   },
@@ -26,6 +25,7 @@ const gameSlice = createSlice({
     stopGame: (state, action) => {
       return {
         ...state,
+        isDifficultySelected: action.payload.isDifficultySelected,
         started: action.payload.started,
       };
     },
