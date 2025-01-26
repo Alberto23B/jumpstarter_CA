@@ -8,7 +8,7 @@ import {
   clearSVG,
 } from "../../utils/svgCollection";
 
-export default function Task({ task, key, i }) {
+export default function Task({ task, keyNum }) {
   const dispatch = useDispatch();
   const totalTime = task.estimatedTime;
   const [isActive, setIsActive] = useState(false);
@@ -30,7 +30,7 @@ export default function Task({ task, key, i }) {
   };
 
   return (
-    <li key={key} className="flex py-5 my-2 bg-black">
+    <li key={keyNum} className="flex py-5 my-2 bg-black">
       <p className="box-content w-2/5 ml-7">{task.task}</p>
       <div className="flex justify-around w-2/4 mx-2">
         {timeSVG}
@@ -38,7 +38,9 @@ export default function Task({ task, key, i }) {
           {`${totalTime} `}
           <span>minutes</span>
         </p>
-        <p className={isGameStarted && !i ? "animate-fadeInOut" : "hidden "}>
+        <p
+          className={isGameStarted && !keyNum ? "animate-fadeInOut" : "hidden "}
+        >
           🟢
         </p>
         <div>

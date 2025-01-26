@@ -46,7 +46,7 @@ export default function TaskList() {
     <div className="mx-2">
       <ul>
         {tasks.map((task, i) => (
-          <Task key={i} task={task} i={i}></Task>
+          <Task key={i} keyNum={i} task={task}></Task>
         ))}
       </ul>
     </div>
