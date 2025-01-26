@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "./tasksSlice";
 import {
   timeSVG,
@@ -12,6 +12,9 @@ export default function Task({ task }) {
   const dispatch = useDispatch();
   const totalTime = task.estimatedTime;
   const [isActive, setIsActive] = useState(false);
+  const isDifficultySelected = useSelector(
+    (state) => state.game.isDifficultySelected
+  );
 
   const displayReward = (value) => {
     const display = [];
@@ -30,7 +33,7 @@ export default function Task({ task }) {
       <p className="box-content w-2/5 ml-7">{task.task}</p>
       <div className="flex justify-around w-2/4 mx-2">
         {timeSVG}
-        <p>
+        <p className={isDifficultySelected ? "text-amber-400" : ""}>
           {`${totalTime} `}
           <span>minutes</span>
         </p>
