@@ -8,10 +8,11 @@ import {
   clearSVG,
 } from "../../utils/svgCollection";
 
-export default function Task({ task }) {
+export default function Task({ task, key, i }) {
   const dispatch = useDispatch();
   const totalTime = task.estimatedTime;
   const [isActive, setIsActive] = useState(false);
+  const isGameStarted = useSelector((state) => state.game.started);
   const isDifficultySelected = useSelector(
     (state) => state.game.isDifficultySelected
   );
@@ -29,13 +30,16 @@ export default function Task({ task }) {
   };
 
   return (
-    <li key={task.id} className="flex py-5 my-2 bg-black">
+    <li key={key} className="flex py-5 my-2 bg-black">
       <p className="box-content w-2/5 ml-7">{task.task}</p>
       <div className="flex justify-around w-2/4 mx-2">
         {timeSVG}
         <p className={isDifficultySelected ? "text-amber-400" : ""}>
           {`${totalTime} `}
           <span>minutes</span>
+        </p>
+        <p className={isGameStarted && !i ? "animate-fadeInOut" : "hidden "}>
+          🟢
         </p>
         <div>
           {displayReward(task.reward).map((task) => {

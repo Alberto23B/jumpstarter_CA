@@ -11,6 +11,7 @@ module.exports = {
         "infinite-scroll2": "infinite-scroll 120s linear 3s infinite",
         "v-scroll": "vertical-scroll 90s linear infinite alternate",
         "v-scroll2": "vertical-scroll 95s linear infinite alternate-reverse",
+        "fadeInOut": "fadeInOut 2s ease-in-out infinite",
       },
       keyframes: {
         "infinite-scroll": {
@@ -20,6 +21,10 @@ module.exports = {
         "vertical-scroll": {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(-100%)" },
+        },
+        "fadeInOut": {
+          "0%, 100%": { opacity: 1 },
+          "50%": { opacity: 0.2 },
         },
       },
     },
