@@ -5,7 +5,7 @@ import { setScore } from "../game/gameSlice";
 import { calculateScore } from "../../utils/game";
 import {
   timeSVG,
-  rewardSVG,
+  rewardSmallSVG,
   clearSVG,
   checkSVG,
 } from "../../utils/svgCollection";
@@ -41,8 +41,13 @@ export default function Task({ task, keyNum }) {
 
   return (
     <li key={keyNum} className="flex py-5 my-2 bg-black">
-      <p className="box-content w-2/5 ml-7">{task.task}</p>
-      <div className="flex justify-around w-2/4 mx-2">
+      <p className="box-content w-2/5 ml-7 overflow-clip">{task.task}</p>
+      <div className="flex justify-around w-3/5 mx-2">
+        <p
+          className={isGameStarted && !keyNum ? "animate-fadeInOut" : "hidden "}
+        >
+          🟢
+        </p>
         {timeSVG}
         {isGameStarted && !keyNum ? (
           <Timer
@@ -57,14 +62,9 @@ export default function Task({ task, keyNum }) {
           </p>
         )}
 
-        <p
-          className={isGameStarted && !keyNum ? "animate-fadeInOut" : "hidden "}
-        >
-          🟢
-        </p>
-        <div>
-          {displayReward(task.reward).map((task) => {
-            return rewardSVG;
+        <div className="w-1/5">
+          {displayReward(task.reward).map((task, i) => {
+            return <i key={i}>{rewardSmallSVG}</i>;
           })}
         </div>
       </div>
