@@ -18,10 +18,12 @@ export default function Timer({ initialTime, task, difficulty }) {
     }
 
     const interval = setInterval(() => {
-      setTimeLeft((prevTime) => prevTime - 1);
-    }, 60000);
+      setTimeLeft((prevTime) => {
+        const correctTime = (Math.round(prevTime * 100) / 100).toFixed(1);
+        return (correctTime * 10 - 1) / 10;
+      });
+    }, 6000);
 
-    console.log(timeLeft);
     return () => clearInterval(interval);
   }, [timeLeft]);
 
@@ -46,6 +48,7 @@ export default function Timer({ initialTime, task, difficulty }) {
         <button onClick={handleYes}>yes</button>
         <button onClick={handleNo}>no</button>
       </dialog>
+
       <span className="text-amber-400 animate-fadeInOut">
         {timeLeft} minutes
       </span>
