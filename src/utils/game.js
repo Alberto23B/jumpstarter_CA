@@ -17,3 +17,12 @@ export function modifyTask(tasks, difficulty) {
 
   return modifiedTasks;
 }
+
+export function calculateScore(task, difficulty, success) {
+  switch (difficulty) {
+    case "guru":
+      return success ? Number(task.reward) : -1;
+    default:
+      return success ? Number(task.reward) : 0;
+  }
+}

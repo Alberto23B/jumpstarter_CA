@@ -29,8 +29,16 @@ const gameSlice = createSlice({
         started: action.payload.started,
       };
     },
+    setScore: (state, action) => {
+      console.log(state.score, action.payload.score);
+      return {
+        ...state,
+        score: state.score + action.payload.score,
+      };
+    },
   },
 });
 
 export default gameSlice.reducer;
-export const { setDifficulty, startGame, stopGame } = gameSlice.actions;
+export const { setDifficulty, startGame, stopGame, setScore } =
+  gameSlice.actions;

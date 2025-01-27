@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "./tasksSlice";
+import { setScore } from "../game/gameSlice";
+import { calculateScore } from "../../utils/game";
 import {
   timeSVG,
   rewardSVG,
@@ -11,11 +13,11 @@ import {
 export default function Task({ task, keyNum }) {
   const dispatch = useDispatch();
   const totalTime = task.estimatedTime;
-  const [completed, setCompleted] = useState(false);
   const isGameStarted = useSelector((state) => state.game.started);
   const isDifficultySelected = useSelector(
     (state) => state.game.isDifficultySelected
   );
+  const difficulty = useSelector((state) => state.game.difficulty);
 
   const displayReward = (value) => {
     const display = [];
@@ -26,10 +28,19 @@ export default function Task({ task, keyNum }) {
   };
 
   const handleDelete = () => {
-    dispatch(deleteTask({ id: task.id }));
+    if (isGameStarted) {
+      dispatch(setScore({ score: calculateScore(task, difficulty, false) }));
+      dispatch(deleteTask({ id: task.id }));
+    } else {
+      dispatch(deleteTask({ id: task.id }));
+    }
   };
 
-  const handleComplete = () => {};
+  const handleComplete = () => {
+    console.log(calculateScore(task, difficulty, true));
+    dispatch(setScore({ score: calculateScore(task, difficulty, true) }));
+    dispatch(deleteTask({ id: task.id }));
+  };
 
   return (
     <li key={keyNum} className="flex py-5 my-2 bg-black">
@@ -53,15 +64,12 @@ export default function Task({ task, keyNum }) {
       </div>
       <div className="m-auto">
         <button
-          onClick={handleDelete}
+          onClick={handleComplete}
           className={isGameStarted && !keyNum ? "font-bold" : "hidden"}
         >
           {checkSVG}
         </button>
-        <button
-          onClick={handleComplete}
-          className={isGameStarted && keyNum ? "font-bold" : "hidden"}
-        >
+        <button onClick={handleDelete} className={"font-bold"}>
           {clearSVG}
         </button>
       </div>
