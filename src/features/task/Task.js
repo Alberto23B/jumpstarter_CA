@@ -4,14 +4,14 @@ import { deleteTask } from "./tasksSlice";
 import {
   timeSVG,
   rewardSVG,
-  playSVG,
   clearSVG,
+  checkSVG,
 } from "../../utils/svgCollection";
 
 export default function Task({ task, keyNum }) {
   const dispatch = useDispatch();
   const totalTime = task.estimatedTime;
-  const [isActive, setIsActive] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const isGameStarted = useSelector((state) => state.game.started);
   const isDifficultySelected = useSelector(
     (state) => state.game.isDifficultySelected
@@ -28,6 +28,8 @@ export default function Task({ task, keyNum }) {
   const handleDelete = () => {
     dispatch(deleteTask({ id: task.id }));
   };
+
+  const handleComplete = () => {};
 
   return (
     <li key={keyNum} className="flex py-5 my-2 bg-black">
@@ -50,7 +52,16 @@ export default function Task({ task, keyNum }) {
         </div>
       </div>
       <div className="m-auto">
-        <button onClick={handleDelete} className="font-bold">
+        <button
+          onClick={handleDelete}
+          className={isGameStarted && !keyNum ? "font-bold" : "hidden"}
+        >
+          {checkSVG}
+        </button>
+        <button
+          onClick={handleComplete}
+          className={isGameStarted && keyNum ? "font-bold" : "hidden"}
+        >
           {clearSVG}
         </button>
       </div>
