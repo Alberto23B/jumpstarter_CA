@@ -53,6 +53,7 @@ export default function InputTask() {
         <div className="w-full text-center">
           <input
             className="w-5/6 ml-2 text-black border-2 border-black"
+            id="task-text"
             type="text"
             placeholder="Add task"
             value={inputTask}

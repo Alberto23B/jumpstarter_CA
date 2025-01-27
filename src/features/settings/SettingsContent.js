@@ -108,22 +108,22 @@ export default function SettingsContent({ reference }) {
           <p>pause between tasks:</p>
           <input
             type="radio"
-            id="yes"
+            id="yes-break"
             name="break"
             checked={isBreakActive}
             onChange={(e) => handleSelect(e.target.name, true)}
             disabled={isGameStarted}
           ></input>
-          <label htmlFor="break">yes </label>
+          <label htmlFor="yes-break">yes </label>
           <input
             type="radio"
-            id="no"
+            id="no-break"
             name="break"
             checked={!isBreakActive}
             onChange={(e) => handleSelect(e.target.name, false)}
             disabled={isGameStarted}
           ></input>
-          <label htmlFor="break">no </label>
+          <label htmlFor="no-break">no </label>
         </div>
         <div className="py-5 mx-2">
           <label
