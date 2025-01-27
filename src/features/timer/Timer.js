@@ -13,6 +13,12 @@ export default function Timer({ initialTime, task, difficulty }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (initialTime > 0) {
+      setTimeLeft(initialTime);
+    }
+  }, [initialTime, task.id]);
+
+  useEffect(() => {
     if (timeLeft <= 0) {
       return;
     }
@@ -20,25 +26,29 @@ export default function Timer({ initialTime, task, difficulty }) {
     const interval = setInterval(() => {
       setTimeLeft((prevTime) => {
         const correctTime = (Math.round(prevTime * 100) / 100).toFixed(1);
-        return (correctTime * 10 - 1) / 10;
+        return Math.max((correctTime * 10 - 1) / 10, 0);
       });
     }, 6000);
 
     return () => clearInterval(interval);
   }, [timeLeft]);
 
-  if (!timeLeft) {
-    toggleModal(timeUpRef);
-  }
+  useEffect(() => {
+    if (timeLeft === 0) {
+      toggleModal(timeUpRef);
+    }
+  }, [timeLeft]);
 
   const handleYes = () => {
     dispatch(setScore({ score: calculateScore(task, difficulty, true) }));
     dispatch(deleteTask({ id: task.id }));
+    toggleModal(timeUpRef);
   };
 
   const handleNo = () => {
     dispatch(setScore({ score: calculateScore(task, difficulty, false) }));
     dispatch(deleteTask({ id: task.id }));
+    toggleModal(timeUpRef);
   };
 
   return (
