@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import toggleModal from "../../utils/toggleModal";
 import { useDispatch } from "react-redux";
-import { setScore, stopGame } from "../game/gameSlice";
+import { setScore } from "../game/gameSlice";
 import { deleteTask } from "../task/tasksSlice";
 import { calculateScore } from "../../utils/game";
 

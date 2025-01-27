@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { settingSVG } from "../../utils/svgCollection";
 import toggleSetting from "../../utils/toggleModal";
 import SettingsContent from "./SettingsContent";

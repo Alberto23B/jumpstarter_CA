@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTask } from "./tasksSlice";
 import { setScore } from "../game/gameSlice";
@@ -15,9 +15,6 @@ export default function Task({ task, keyNum }) {
   const dispatch = useDispatch();
   const totalTime = task.estimatedTime;
   const isGameStarted = useSelector((state) => state.game.started);
-  const isDifficultySelected = useSelector(
-    (state) => state.game.isDifficultySelected
-  );
   const difficulty = useSelector((state) => state.game.difficulty);
 
   const displayReward = (value) => {
