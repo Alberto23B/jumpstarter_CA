@@ -11,6 +11,7 @@ export default function InputTask() {
   const [estimatedHours, setEstimatedHours] = useState(0);
   const [estimatedMinutes, setEstimatedMinutes] = useState(0);
   const [reward, setReward] = useState(1);
+  const isGameStarted = useSelector((state) => state.game.started);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -43,7 +44,7 @@ export default function InputTask() {
   };
 
   return (
-    <div className="flex">
+    <div className={isGameStarted ? "hidden" : "flex"}>
       <form
         className="flex flex-col w-5/6 my-5 ml-2"
         onSubmit={handleSubmit}
