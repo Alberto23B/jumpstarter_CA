@@ -28,6 +28,10 @@ export const weatherImg = [
     url: mist,
   },
   {
+    main: "fog",
+    url: mist,
+  },
+  {
     main: "clear",
     url: clear,
   },
