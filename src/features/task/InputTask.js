@@ -35,6 +35,7 @@ export default function InputTask() {
     dispatch(
       addTask({
         id: id,
+        creationDate: Date.now(),
         task: inputTask,
         estimatedTime: totalTime,
         reward: reward,

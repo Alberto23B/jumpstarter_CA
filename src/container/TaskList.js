@@ -16,6 +16,10 @@ export default function TaskList() {
 
   useEffect(() => {
     let sorted = [...userTasks];
+
+    const sortByInput = isDescending
+      ? (a, b) => b.creationDate - a.creationDate
+      : (a, b) => a.creationDate - b.creationDate;
     const sortByEstimated = isDescending
       ? (a, b) => b.estimatedTime - a.estimatedTime
       : (a, b) => a.estimatedTime - b.estimatedTime;
@@ -31,7 +35,7 @@ export default function TaskList() {
         sorted.sort(sortByReward);
         break;
       default:
-        sorted = userTasks;
+        sorted.sort(sortByInput);
         break;
     }
 
