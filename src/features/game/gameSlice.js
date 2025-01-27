@@ -27,6 +27,7 @@ const gameSlice = createSlice({
         ...state,
         isDifficultySelected: action.payload.isDifficultySelected,
         started: action.payload.started,
+        score: action.payload.score,
       };
     },
     setScore: (state, action) => {
