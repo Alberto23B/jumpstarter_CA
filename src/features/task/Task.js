@@ -38,7 +38,6 @@ export default function Task({ task, keyNum }) {
   };
 
   const handleComplete = () => {
-    console.log(calculateScore(task, difficulty, true));
     dispatch(setScore({ score: calculateScore(task, difficulty, true) }));
     dispatch(deleteTask({ id: task.id }));
   };
@@ -49,7 +48,11 @@ export default function Task({ task, keyNum }) {
       <div className="flex justify-around w-2/4 mx-2">
         {timeSVG}
         {isGameStarted && !keyNum ? (
-          <Timer initialTime={task.estimatedTime} />
+          <Timer
+            initialTime={task.estimatedTime}
+            task={task}
+            difficulty={difficulty}
+          />
         ) : (
           <p>
             {`${totalTime} `}
