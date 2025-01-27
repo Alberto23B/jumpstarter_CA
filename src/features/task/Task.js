@@ -9,6 +9,7 @@ import {
   clearSVG,
   checkSVG,
 } from "../../utils/svgCollection";
+import Timer from "../timer/Timer";
 
 export default function Task({ task, keyNum }) {
   const dispatch = useDispatch();
@@ -47,10 +48,15 @@ export default function Task({ task, keyNum }) {
       <p className="box-content w-2/5 ml-7">{task.task}</p>
       <div className="flex justify-around w-2/4 mx-2">
         {timeSVG}
-        <p className={isDifficultySelected ? "text-amber-400" : ""}>
-          {`${totalTime} `}
-          <span>minutes</span>
-        </p>
+        {isGameStarted && !keyNum ? (
+          <Timer initialTime={task.estimatedTime} />
+        ) : (
+          <p>
+            {`${totalTime} `}
+            <span>minutes</span>
+          </p>
+        )}
+
         <p
           className={isGameStarted && !keyNum ? "animate-fadeInOut" : "hidden "}
         >
