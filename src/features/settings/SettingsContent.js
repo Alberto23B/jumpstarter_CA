@@ -105,38 +105,49 @@ export default function SettingsContent({ reference }) {
           />
         </div>
         <div className="py-5 mx-2">
-          <p>pause between tasks:</p>
+          <p>
+            <span className="line-through text-slate-600">
+              pause between tasks:
+            </span>{" "}
+            coming soon
+          </p>
           <input
             type="radio"
             id="yes-break"
             name="break"
             checked={isBreakActive}
             onChange={(e) => handleSelect(e.target.name, true)}
-            disabled={isGameStarted}
+            disabled={true}
           ></input>
-          <label htmlFor="yes-break">yes </label>
+          <label htmlFor="yes-break" className="text-slate-600">
+            yes{" "}
+          </label>
           <input
             type="radio"
             id="no-break"
             name="break"
             checked={!isBreakActive}
             onChange={(e) => handleSelect(e.target.name, false)}
-            disabled={isGameStarted}
+            disabled={true}
           ></input>
-          <label htmlFor="no-break">no </label>
+          <label htmlFor="no-break" className="text-slate-600">
+            no{" "}
+          </label>
         </div>
         <div className="py-5 mx-2">
           <label
             htmlFor="break-time"
-            className={isBreakActive ? "text-white" : "text-slate-600"}
+            // className={isBreakActive ? "text-white" : "text-slate-600"}
+            className="text-white"
           >
-            break time:
+            <span className="line-through text-slate-600">break time:</span>{" "}
+            coming soon
           </label>
           <select
             id="break-time"
             className="text-black"
             onChange={(e) => handleSelect(e.target.id, e.target.value)}
-            disabled={!isBreakActive}
+            disabled={true}
           >
             <option value={0}>0</option>
             <option value={5}>5</option>
