@@ -7,17 +7,20 @@ export default function PlayGame() {
   const isDifficultySelected = useSelector(
     (state) => state.game.isDifficultySelected
   );
+  const tasks = useSelector((state) => state.tasks);
 
   const handleClick = () => {
-    if (isDifficultySelected) {
+    if (isDifficultySelected && tasks.length) {
       dispatch(
         startGame({
           started: true,
         })
       );
-    } else {
+    } else if (!isDifficultySelected) {
       alert("Please select a difficulty first");
       return;
+    } else {
+      alert("Please insert at least one task");
     }
   };
 
