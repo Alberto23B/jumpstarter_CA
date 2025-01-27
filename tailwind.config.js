@@ -12,6 +12,7 @@ module.exports = {
         "v-scroll": "vertical-scroll 90s linear infinite alternate",
         "v-scroll2": "vertical-scroll 95s linear infinite alternate-reverse",
         "fadeInOut": "fadeInOut 2s ease-in-out infinite",
+        "glow": "glow 1s ease-in-out forwards",
       },
       keyframes: {
         "infinite-scroll": {
@@ -25,6 +26,11 @@ module.exports = {
         "fadeInOut": {
           "0%, 100%": { opacity: 1 },
           "50%": { opacity: 0.2 },
+        },
+        "glow": {
+          "0%": { transform: "scale(1)", color: "white" },
+          "50%": { transform: "scale(1.2)", color: "#fbbf24" },
+          "100%": { transform: "scale(1)", color: "white" },
         },
       },
     },
