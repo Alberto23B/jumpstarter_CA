@@ -53,10 +53,23 @@ export default function Timer({ initialTime, task, difficulty }) {
 
   return (
     <>
-      <dialog ref={timeUpRef}>
-        <h2>did you finished the task on time?</h2>
-        <button onClick={handleYes}>yes</button>
-        <button onClick={handleNo}>no</button>
+      <dialog
+        ref={timeUpRef}
+        className="text-center text-white bg-black border-2 border-white w-96"
+      >
+        <h2 className="p-5 text-3xl">did you finished the task on time?</h2>
+        <button
+          onClick={handleYes}
+          className="px-2 mx-1 mb-5 text-sm border-2 border-white rounded-lg w-fit xl:w-1/4"
+        >
+          yes
+        </button>
+        <button
+          onClick={handleNo}
+          className="px-2 mx-1 mb-5 text-sm border-2 border-white rounded-lg w-fit xl:w-1/4"
+        >
+          no
+        </button>
       </dialog>
 
       <span className="text-amber-400 animate-fadeInOut">
