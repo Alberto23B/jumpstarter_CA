@@ -10,6 +10,7 @@ import {
 
 export default function SettingsContent({ reference }) {
   const dispatch = useDispatch();
+  const isGameStarted = useSelector((state) => state.game.started);
   const isBreakActive = useSelector((state) => state.settings.break);
   const orderSelected = useSelector((state) => state.settings.order);
   const isDescending = useSelector((state) => state.settings.descending);
@@ -60,6 +61,9 @@ export default function SettingsContent({ reference }) {
         <div>
           <h2 className="p-5 text-2xl text-center">settings</h2>
         </div>
+        {isGameStarted && (
+          <p className="text-amber-400">Stop the game to use settings</p>
+        )}
         <div className="py-5 mx-2">
           <p>order task:</p>
           <input
@@ -68,6 +72,7 @@ export default function SettingsContent({ reference }) {
             name="order-task"
             onChange={(e) => handleSelect(e.target.name, "input")}
             checked={orderSelected === "input"}
+            disabled={isGameStarted}
           ></input>
           <label htmlFor="input">input </label>
           <input
@@ -76,6 +81,7 @@ export default function SettingsContent({ reference }) {
             name="order-task"
             checked={orderSelected === "estimated"}
             onChange={(e) => handleSelect(e.target.name, "estimated")}
+            disabled={isGameStarted}
           ></input>
           <label htmlFor="estimated">estimated </label>
           <input
@@ -84,6 +90,7 @@ export default function SettingsContent({ reference }) {
             name="order-task"
             checked={orderSelected === "reward"}
             onChange={(e) => handleSelect(e.target.name, "reward")}
+            disabled={isGameStarted}
           ></input>
           <label htmlFor="reward">reward </label>
         </div>
@@ -94,6 +101,7 @@ export default function SettingsContent({ reference }) {
             id="descending"
             name="descending"
             onChange={(e) => handleSelect(e.target.name, !isDescending)}
+            disabled={isGameStarted}
           />
         </div>
         <div className="py-5 mx-2">
@@ -104,6 +112,7 @@ export default function SettingsContent({ reference }) {
             name="break"
             checked={isBreakActive}
             onChange={(e) => handleSelect(e.target.name, true)}
+            disabled={isGameStarted}
           ></input>
           <label htmlFor="break">yes </label>
           <input
@@ -112,6 +121,7 @@ export default function SettingsContent({ reference }) {
             name="break"
             checked={!isBreakActive}
             onChange={(e) => handleSelect(e.target.name, false)}
+            disabled={isGameStarted}
           ></input>
           <label htmlFor="break">no </label>
         </div>
